@@ -51,7 +51,7 @@ SR 软件架构如下图：
 
 ## 信息记录
 
-- Latest version : 2.1.0 (Release version)
+- Latest version : 2.1.1b2 (Release version)
 
 
 
@@ -82,6 +82,13 @@ SR 软件架构如下图：
 
 
 ## 更新说明
+
+## 2.1.1b2
+- 解决Linux平台OSD模块概率出现Segment Fault问题
+- 解决概率出现输出有OSD但没有SR效果问题
+- 优化CPU调频策略
+- 更新Android 11/12/13/14 平台显示系统补丁
+- 增加Linux初始化Vulkan报错章节说明
 
 ## 2.1.0
 

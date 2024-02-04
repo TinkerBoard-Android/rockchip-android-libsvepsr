@@ -62,7 +62,7 @@ LOCAL_MODULE_SUFFIX := .so
 ##LOCAL_VENDOR_MODULE := true
 LOCAL_VENDOR_MODULE := true
 LOCAL_PROPRIETARY_MODULE := true
-LOCAL_SHARED_LIBRARIES := libc libdl liblog libm libstdc++ libz
+LOCAL_SHARED_LIBRARIES := libc libdl liblog libm libz
 ifneq ($(strip $(TARGET_2ND_ARCH)), )
 LOCAL_MULTILIB := both
 LOCAL_SRC_FILES_$(TARGET_ARCH) := $(TARGET_SVEP_LIB_PATH)/$(TARGET_CPU_ABI)/librknnrt-svep.so
@@ -71,38 +71,6 @@ else
 LOCAL_SRC_FILES_$(TARGET_ARCH) := $(TARGET_SVEP_LIB_PATH)/$(TARGET_CPU_ABI)/librknnrt-svep.so
 endif
 include $(BUILD_PREBUILT)
-
-ifndef LIBSVEP_OPENCL_DEFINE
-include $(CLEAR_VARS)
-LIBSVEP_OPENCL_DEFINE := true
-LOCAL_MODULE := libOpenCL
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-LOCAL_MODULE_STEM := $(LOCAL_MODULE)
-LOCAL_MODULE_SUFFIX := .so
-LOCAL_VENDOR_MODULE := true
-LOCAL_PROPRIETARY_MODULE := true
-ifneq ($(strip $(TARGET_2ND_ARCH)), )
-LOCAL_MULTILIB := both
-LOCAL_SRC_FILES_$(TARGET_ARCH) := $(TARGET_SVEP_LIB_PATH)/$(TARGET_CPU_ABI)/libOpenCL.so
-LOCAL_SRC_FILES_$(TARGET_2ND_ARCH) := $(TARGET_SVEP_LIB_PATH)/$(TARGET_2ND_CPU_ABI)/libOpenCL.so
-else
-LOCAL_SRC_FILES_$(TARGET_ARCH) := $(TARGET_SVEP_LIB_PATH)/$(TARGET_CPU_ABI)/libOpenCL.so
-endif
-
-LOCAL_SHARED_LIBRARIES += \
-  libGLES_mali
-# Create symlinks.
-LOCAL_POST_INSTALL_CMD := \
-        cd $(TARGET_OUT_VENDOR)/lib64; \
-        ln -sf egl/libGLES_mali.so libOpenCL.so; \
-        cd -; \
-        cd $(TARGET_OUT_VENDOR)/lib; \
-        ln -sf egl/libGLES_mali.so libOpenCL.so; \
-        cd -;
-
-include $(BUILD_PREBUILT)
-endif
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := libsvepsr
@@ -133,6 +101,7 @@ LOCAL_SRC_FILES_$(TARGET_2ND_ARCH) := $(TARGET_SVEP_LIB_PATH)/$(TARGET_2ND_CPU_A
 else
 LOCAL_SRC_FILES_$(TARGET_ARCH) := $(TARGET_SVEP_LIB_PATH)/$(TARGET_CPU_ABI)/libsvepsr.so
 endif
+LOCAL_CHECK_ELF_FILES := false
 LOCAL_MODULE_SUFFIX := .so
 include $(BUILD_PREBUILT)
 

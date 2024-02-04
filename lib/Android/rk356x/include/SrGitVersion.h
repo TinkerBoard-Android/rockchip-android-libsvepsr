@@ -1,4 +1,4 @@
 #pragma once
 
-#define GIT_REVISION "8a7f8b2"
-#define BUILD_TIMESTAMP "2023-12-29T09:17:40"
+#define GIT_REVISION "b275ea4"
+#define BUILD_TIMESTAMP "2024-02-04T14:37:54"

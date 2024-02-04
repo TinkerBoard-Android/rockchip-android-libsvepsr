@@ -73,6 +73,6 @@ LOCAL_SRC_FILES :=  \
 	src/worker.cpp
 
 LOCAL_VENDOR_MODULE := true
-
+LOCAL_CHECK_ELF_FILES := false
 include $(BUILD_EXECUTABLE)
 endif
